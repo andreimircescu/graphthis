@@ -44,6 +44,8 @@ and also distribute the information to nodes.
 ## Future
 
 1. add all the basic operations for [graphs](https://en.wikipedia.org/wiki/Graph_%28abstract_data_type%29)
-2. add support for multiple types of graphs and.
+2. add tests
+3. add support for multiple types of graphs
+... much more
 
 
