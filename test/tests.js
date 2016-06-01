@@ -2,7 +2,7 @@ var chai = require("chai");
 var expect = chai.expect;
 
 var graphthis = require("../lib/graphthis.js");
-
+var endpointType = graphthis.endpointType;
 describe("graphthis", function() {
 	it("Checks if it can create and add 2 nodes to the graph", function() {
 		var graph = new graphthis.graph("Test Graph");
@@ -19,11 +19,10 @@ describe("graphthis", function() {
 		var graph = new graphthis.graph("Test Graph");
 		var nodeA = new graphthis.node("nodeA",5,null);
 		var nodeB = new graphthis.node("nodeB",10,null);
-		graph.createEdge(nodeA,nodeB,"EdgeLabel", 10);
+		edge = graph.createEdge(nodeA,nodeB,"EdgeLabel", 10);
 		//check if nodeA is originate
-		expect(nodeA.asOriginateEndpointFor[0].node).to.equal(nodeB);
-		//check if nodeB is destination
-		expect(nodeB.asDestinationEndpointFor[0].node).to.equal(nodeA);
+		expect(edge.getEndpointType(nodeA)).to.equal(endpointType.originator);
+		expect(edge.getEndpointType(nodeB)).to.equal(endpointType.destination);
 	});
 });
 
@@ -76,7 +75,7 @@ describe("graphthis", function() {
 	});
 });
 
-/*describe("graphthis", function() {
+describe("graphthis", function() {
 	it("Checks if neighbors works", function() {
 		var graph = new graphthis.graph("Test Graph");
 		var nodeA = new graphthis.node("nodeA",5,null);
@@ -97,4 +96,4 @@ describe("graphthis", function() {
 
 
 	});
-});*/
+});
