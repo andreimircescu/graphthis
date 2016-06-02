@@ -51,7 +51,7 @@ describe("graphthis", function() {
 		graph.addNodes(nodeA,nodeB,nodeC);
 		expect(graph.getNodesByGroup("group1").length).to.equal(2);
 		expect(graph.getNodesByGroup("group2").length).to.equal(1);
-		
+
 	});
 });
 
@@ -94,6 +94,43 @@ describe("graphthis", function() {
 		expect(graph.neighbors(nodeB).length).to.equal(2);
 
 
+
+	});
+});
+
+describe("graphthis", function() {
+	it("complete test 1", function() {
+		var graph = new graphthis.graph("Test Graph");
+		var nodeA = new graphthis.node("nodeA",5,null);
+		var nodeB = new graphthis.node("nodeB",10,null);
+		var nodeC = new graphthis.node("nodeC",15,null);
+		var nodeD = new graphthis.node("nodeD",15,null);
+		var nodeE = new graphthis.node("nodeE",15,null);
+		var nodeF = new graphthis.node("nodeF",5,null);
+		var nodeG = new graphthis.node("nodeG",10,null);
+		var nodeH = new graphthis.node("nodeH",15,null);
+		var nodeI = new graphthis.node("nodeI",15,null);
+		var nodeJ = new graphthis.node("nodeJ",15,null);
+		graph.addNodes(nodeA,nodeB,nodeC,nodeD, nodeE,nodeF);
+		graph.addNodes(nodeG,nodeH,nodeI,nodeJ);
+	        
+		graph.createEdge(nodeA,nodeB,"EdgeLabel", 10);
+		graph.createEdge(nodeB,nodeC,"EdgeLabel2", 20);
+		graph.createEdge(nodeB,nodeA,"EdgeLabel3", 30);
+		graph.createEdge(nodeA,nodeA,"EdgeLabel3", 30);
+		graph.createEdge(nodeA,nodeH,"EdgeLabel3", 30);
+
+		graph.addGroupToNodes("group1", nodeA, nodeB, nodeC);
+		graph.addGroupToNodes("group2", nodeA, nodeB, nodeC);
+		graph.addGroupToNodes("group3", nodeG, nodeJ, nodeI,nodeA);
+
+		graph.getNodesByGroup("group1");
+		expect(graph.neighbors(nodeA).length).to.equal(2);
+		expect(graph.neighbors(nodeB).length).to.equal(2);
+
+		expect(graph.getNodesByGroup("group1").length).to.equal(3);
+		expect(graph.getNodesByGroup("group2").length).to.equal(3);
+		expect(graph.getNodesByGroup("group3").length).to.equal(4);
 
 	});
 });
