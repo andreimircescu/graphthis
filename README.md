@@ -24,6 +24,8 @@ graph.createEdge(nodeA,nodeB, "labelME");
 
 //add a set of nodes to a group
 graph.addToGroup("Villains", [nodeA,nodeB]);
+//or
+graph.addGroupToNodes("group2", nodeA, nodeB, nodeC);
 
 //getters for node and edge lists
 graph.nodeList;
@@ -31,6 +33,13 @@ graph.edgeList;
 
 //node list filtered by group
 var nodeList = graph.getNodesByGroup("groupName");
+
+
+//neighbors API
+graph.neighbors(nodeB) // it will return an array with node neighbors
+
+//graph.adjacent
+graph.adjacent(nodeA,nodeB) // will return true/false if 2 nodes are adjacent
 
 
 ```
